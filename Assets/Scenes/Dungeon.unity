@@ -370,7 +370,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484922250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25762224, y: 2.1250799, z: -15.527482}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -390,8 +390,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ground: {fileID: 2136148013}
   area:
-    m_Position: {x: 0, y: 0, z: 0}
-    m_Size: {x: 10, y: 10, z: 0}
+    m_Position: {x: -15, y: -15, z: 0}
+    m_Size: {x: 30, y: 30, z: 1}
   Enemy1: {fileID: 3268916826804657435, guid: 2e54883a85b19a74b8666f07ba42be5a, type: 3}
   availablePlaces: []
 --- !u!1 &1552535086

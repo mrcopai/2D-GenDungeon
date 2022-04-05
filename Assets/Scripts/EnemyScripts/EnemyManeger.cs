@@ -7,7 +7,8 @@ public class EnemyManeger : MonoBehaviour
 {
     [SerializeField]
     Tilemap Ground;
-    public BoundsInt area;
+    [SerializeField]
+    BoundsInt area = new BoundsInt(new Vector3Int(-15, -15, 0), new Vector3Int(30, 30, 1));
 
     [Header("Enemy1")]
     public GameObject Enemy1;
@@ -30,17 +31,12 @@ public class EnemyManeger : MonoBehaviour
                 }
             }
         }
-        Debug.Log(availablePlaces.Count);
-        TileBase[] tileArray = Ground.GetTilesBlock(area);
-        Debug.Log(tileArray.Length);
 
-        foreach (Tile item in tileArray)
+        foreach (Vector3Int item in area.allPositionsWithin)
         {
-            Vector3 cellPosition = MatrixExtensions.ExtractPosition(item.transform);
-            cellPosition = Ground.WorldToCell(cellPosition);
-            availablePlaces.Remove(cellPosition);
+            availablePlaces.Remove(item);
+            Ground.SetColor(item, Color.black);
         }
-        Debug.Log(availablePlaces.Count);
 
 
 
