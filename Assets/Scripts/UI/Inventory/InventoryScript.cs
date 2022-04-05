@@ -6,22 +6,37 @@ using UnityEngine.UI;
 
 public class InventoryScript : MonoBehaviour
 {
-    public bool[] isFull;
-    public GameObject[] slots;
-    public GameObject[] spriteHolder;
     public GameObject WeaponHolder;
-    private GameObject currentWeapon;
+    private GameObject currentWeapon = null;
+    public GameObject[] itemLocations;
     //selected last inventory item
     GameObject lastselect;
 
-    private void Start()
+    private void Awake()
     {
         //make item to hold last selected item
         lastselect = new GameObject();
         lastselect.name = "LastSelected";
-        DontDestroyOnLoad(lastselect);
 
-        currentWeapon = WeaponHolder.transform.GetChild(0).gameObject;
+        for (int i = 0; i < Inventory.isFull.Length; i++)
+        {
+            if (Inventory.isFull[i] == true)
+            {
+                Inventory.slots[i].gameObject.transform.SetParent(WeaponHolder.transform);
+                Inventory.slots[i].gameObject.transform.localPosition = new Vector3(0, 0, -1);
+                Inventory.slots[i].gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+                itemLocations[i].gameObject.GetComponent<SpriteRenderer>().sprite = Inventory.spriteHolder[i].gameObject.GetComponent<SpriteRenderer>().sprite;
+                if (i == 0)
+                {
+                    Inventory.slots[i].gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
     }
     void Update()
     {
@@ -50,14 +65,14 @@ public class InventoryScript : MonoBehaviour
             {
                 select = 2;
             }
-            if (currentWeapon != slots[select] && slots[select] != SelectedItem)
+            if (currentWeapon != Inventory.slots[select] && Inventory.slots[select] != SelectedItem)
             {
-                if (currentWeapon.transform.parent != null)
+                if (currentWeapon != null)
                 {
                     currentWeapon.SetActive(false);
                 }
-                slots[select].SetActive(true);
-                currentWeapon = slots[select];
+                Inventory.slots[select].SetActive(true);
+                currentWeapon = Inventory.slots[select];
             }
         }
     }

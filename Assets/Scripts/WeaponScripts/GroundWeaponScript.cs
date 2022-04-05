@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GroundWeaponScript : MonoBehaviour
 {
-    private InventoryScript inventory;
     private GameObject WeaponHolder;
     public bool PickedUp = false;
     private GameObject wg;
@@ -146,7 +145,6 @@ public class GroundWeaponScript : MonoBehaviour
     private void Start()
     {
         WeaponHolder = GameObject.FindGameObjectWithTag("WeaponHolder");
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryScript>();
         Damage = GenDamage();
         CritRate = GenCritRate();
         Recharge = GenRecharge();
@@ -184,18 +182,18 @@ public class GroundWeaponScript : MonoBehaviour
     {
         if (other.CompareTag("Player") && PickedUp == false)
         {
-            for (int i = 0; i < inventory.slots.Length; i++)
+            for (int i = 0; i < Inventory.slots.Length; i++)
             {
-                if (inventory.isFull[i] == false)
+                if (Inventory.isFull[i] == false)
                 {
                     PickedUp = true;
-                    inventory.slots[i] = gameObject;
-                    inventory.spriteHolder[i].GetComponent<SpriteRenderer>().sprite = Icon;
+                    Inventory.slots[i] = gameObject;
+                    Inventory.spriteHolder[i].GetComponent<SpriteRenderer>().sprite = Icon;
                     gameObject.transform.SetParent(WeaponHolder.transform);
                     transform.localPosition = new Vector3(0, 0, -1);
                     transform.localRotation = Quaternion.Euler(0, 0, 0);
                     gameObject.SetActive(false);
-                    inventory.isFull[i] = true;
+                    Inventory.isFull[i] = true;
                     GetComponent<TooltipScript>().tooltipText.text = "";
 
                     break;

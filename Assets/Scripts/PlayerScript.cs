@@ -7,12 +7,9 @@ public class PlayerScript : MonoBehaviour
 {
     public float speed;
     public Animator animator;
-    private GameObject player;
 
     private void Start()
     {
-        //find players
-        player = GameObject.Find("Player");
         Application.targetFrameRate = 60;
 
     }
@@ -22,7 +19,7 @@ public class PlayerScript : MonoBehaviour
         //get input player
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        Movement(horizontalInput, verticalInput,player);
+        Movement(horizontalInput, verticalInput);
 
         animator.SetFloat("Hor Speed", Mathf.Abs(horizontalInput));
         animator.SetFloat("Ver Speed", Mathf.Abs(verticalInput));
@@ -33,14 +30,14 @@ public class PlayerScript : MonoBehaviour
             Flip();
 
     }
-    private void Movement(float horizontalInput,float verticalInput, GameObject player)
+    private void Movement(float horizontalInput,float verticalInput)
     {
         //movement
         Vector2 movementDir = new Vector2(horizontalInput, verticalInput);
         float inputMagnitude = Mathf.Clamp01(movementDir.magnitude);
         movementDir.Normalize();
 
-        player.transform.Translate(movementDir * speed * inputMagnitude * Time.deltaTime, Space.World);
+        transform.Translate(movementDir * speed * inputMagnitude * Time.deltaTime, Space.World);
     }
 
     //flip Sprite when facing left

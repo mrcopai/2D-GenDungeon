@@ -10,7 +10,6 @@ public class EnemyManeger : MonoBehaviour
     [SerializeField]
     BoundsInt area = new BoundsInt(new Vector3Int(-15, -15, 0), new Vector3Int(30, 30, 1));
 
-    [Header("Enemy1")]
     public GameObject Enemy1;
     public List<Vector3> availablePlaces;
 
@@ -42,7 +41,7 @@ public class EnemyManeger : MonoBehaviour
 
         for (int i = 0; i < 70; i++)
         {
-            Instantiate(Enemy1, (availablePlaces[Random.Range(0, availablePlaces.Count)] + new Vector3(0, 0, -1)), Quaternion.identity);
+            //Instantiate(Enemy1, (availablePlaces[Random.Range(0, availablePlaces.Count)] + new Vector3(0, 0, -1)), Quaternion.identity);
         }
     }
 }

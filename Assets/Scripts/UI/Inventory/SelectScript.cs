@@ -17,7 +17,6 @@ public class SelectScript : MonoBehaviour, ISelectHandler, IPointerEnterHandler,
         Weapon = gameObject.transform.GetChild(0).gameObject;
         Tooltiptext = gameObject.transform.GetChild(1).gameObject;
         RemoveWeapon = gameObject.transform.GetChild(2).gameObject;
-
     }
     public void OnSelect(BaseEventData eventData)
     {
@@ -29,7 +28,7 @@ public class SelectScript : MonoBehaviour, ISelectHandler, IPointerEnterHandler,
         if (Weapon.GetComponent<SpriteRenderer>().sprite != null)
         {
             int full = 0;
-            foreach (bool item in inventory.isFull)
+            foreach (bool item in Inventory.isFull)
             {
                 if (item == true)
                 {
@@ -42,7 +41,7 @@ public class SelectScript : MonoBehaviour, ISelectHandler, IPointerEnterHandler,
             }
             SelectedItem = eventData.pointerEnter;
             int select = GetWeaponSpot(SelectedItem);
-            GroundWeaponScript CurWeapon = inventory.slots[select].gameObject.GetComponent<GroundWeaponScript>();
+            GroundWeaponScript CurWeapon = Inventory.slots[select].gameObject.GetComponent<GroundWeaponScript>();
             Tooltiptext.GetComponent<Text>().text =
                     "Damage 	= " + CurWeapon.Damage.ToString() +
                     "\n Critrate = " + CurWeapon.CritRate.ToString() +
@@ -81,14 +80,14 @@ public class SelectScript : MonoBehaviour, ISelectHandler, IPointerEnterHandler,
     public void RemoveWeaponAction()
     {
         int select = GetWeaponSpot(SelectedItem);
-        GroundWeaponScript CurWeapon = inventory.slots[select].gameObject.GetComponent<GroundWeaponScript>();
+        GroundWeaponScript CurWeapon = Inventory.slots[select].gameObject.GetComponent<GroundWeaponScript>();
         CurWeapon.transform.SetParent(null);
         CurWeapon.gameObject.SetActive(true);
         CurWeapon.transform.localPosition = new Vector3(inventory.transform.position.x - 2, inventory.transform.position.y);
         CurWeapon.PickedUp = false;
-        inventory.slots[select] = GameObject.Find("Slot ("+select+")");
-        inventory.spriteHolder[select] = GameObject.Find("ItemLocation("+select+")");
-        inventory.isFull[select] = false;
+        Inventory.slots[select] = GameObject.Find("Slot ("+select+")");
+        Inventory.spriteHolder[select] = GameObject.Find("ItemLocation("+select+")");
+        Inventory.isFull[select] = false;
         Weapon.GetComponent<SpriteRenderer>().sprite = null;
 
         Tooltiptext.SetActive(false);

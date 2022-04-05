@@ -9,6 +9,8 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField]
     private Tile[] GroundSprites;
     [SerializeField]
+    private Tile ExitTile;
+    [SerializeField]
     private Tile leftWallTile;
     [SerializeField]
     private Tile righttWallTile;
@@ -25,6 +27,8 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField]
     private Tilemap wallMap;
     [SerializeField]
+    private Tilemap ExitMap;
+    [SerializeField]
     private GameObject player;
     [SerializeField]
     private int deviationRate = 10;
@@ -37,6 +41,12 @@ public class DungeonGenerator : MonoBehaviour
 
 
     private int routeCount = 0;
+    private bool isEnd = false;
+
+    private int xFinal;
+    private int yFinal;
+    private int LongestRoute;
+
 
     private void Start()
     {
@@ -53,6 +63,10 @@ public class DungeonGenerator : MonoBehaviour
         y += 3;
         GenerateSquare(x, y, 1);
         NewRoute(x, y, routeLength, previousPos);
+
+        //gen exit
+        isEnd = true;
+        GenerateSquare(xFinal,yFinal,1);
 
         FillWalls();
     }
@@ -170,8 +184,13 @@ public class DungeonGenerator : MonoBehaviour
                     y = previousPos.y + yOffset;
                     GenerateSquare(x, y, roomSize);
                 }
+                if (routeLength > LongestRoute)
+                {
+                    LongestRoute = routeLength;
+                    xFinal = x;
+                    yFinal = y;
+                }
             }
-
         }
     }
 
@@ -183,7 +202,14 @@ public class DungeonGenerator : MonoBehaviour
             {
                 Vector3Int tilePos = new Vector3Int(tileX, tileY, 0);
                 Tile ground = randTile();
-                groundMap.SetTile(tilePos, ground);
+                if (isEnd == true)
+                {
+                    ExitMap.SetTile(tilePos, ExitTile);
+                }
+                else
+                {
+                    groundMap.SetTile(tilePos, ground);
+                }
             }
         }
     }
