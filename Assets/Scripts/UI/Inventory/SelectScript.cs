@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SelectScript : MonoBehaviour, ISelectHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private InventoryScript inventory;
+    [SerializeField]
     private GameObject Tooltiptext;
     private GameObject Weapon;
     private GameObject RemoveWeapon;
@@ -79,16 +80,18 @@ public class SelectScript : MonoBehaviour, ISelectHandler, IPointerEnterHandler,
     }
     public void RemoveWeaponAction()
     {
+        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryScript>();
         int select = GetWeaponSpot(SelectedItem);
         GroundWeaponScript CurWeapon = Inventory.slots[select].gameObject.GetComponent<GroundWeaponScript>();
         CurWeapon.transform.SetParent(null);
         CurWeapon.gameObject.SetActive(true);
-        CurWeapon.transform.localPosition = new Vector3(inventory.transform.position.x - 2, inventory.transform.position.y);
+        CurWeapon.transform.localPosition = new Vector3(inventory.gameObject.transform.position.x - 2, inventory.gameObject.transform.position.y);
         CurWeapon.PickedUp = false;
         Inventory.slots[select] = GameObject.Find("Slot ("+select+")");
         Inventory.spriteHolder[select] = GameObject.Find("ItemLocation("+select+")");
         Inventory.isFull[select] = false;
         Weapon.GetComponent<SpriteRenderer>().sprite = null;
+        inventory.currentWeapon = null;
 
         Tooltiptext.SetActive(false);
         RemoveWeapon.SetActive(false);

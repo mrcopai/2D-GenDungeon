@@ -145,17 +145,19 @@ public class GroundWeaponScript : MonoBehaviour
     private void Start()
     {
         WeaponHolder = GameObject.FindGameObjectWithTag("WeaponHolder");
+        
         Damage = GenDamage();
         CritRate = GenCritRate();
         Recharge = GenRecharge();
         wg = GameObject.Find("WeaponGenerator");
-        gameObject.GetComponent<SpriteRenderer>().sprite =  
+        gameObject.GetComponent<SpriteRenderer>().sprite =
             wg.GetComponent<WeaponGenerator>().WeaponSprites
             [Random.Range(0, wg.GetComponent<WeaponGenerator>().WeaponSprites.Length)];
         Icon = gameObject.GetComponent<SpriteRenderer>().sprite;
         //name = random name;
-        NamedWeapons();
         Recharged = Recharge;
+        //NamedWeapons();
+
     }
     private void Update()
     {
@@ -177,6 +179,7 @@ public class GroundWeaponScript : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite =
                 wg.GetComponent<WeaponGenerator>().WeaponSprites[3];
         }
+
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -186,9 +189,12 @@ public class GroundWeaponScript : MonoBehaviour
             {
                 if (Inventory.isFull[i] == false)
                 {
+                    StartCoroutine(GetComponent<TooltipScript>().GetTooltip());
                     PickedUp = true;
                     Inventory.slots[i] = gameObject;
+                    Icon = gameObject.GetComponent<SpriteRenderer>().sprite;
                     Inventory.spriteHolder[i].GetComponent<SpriteRenderer>().sprite = Icon;
+                    WeaponHolder = GameObject.FindGameObjectWithTag("WeaponHolder");
                     gameObject.transform.SetParent(WeaponHolder.transform);
                     transform.localPosition = new Vector3(0, 0, -1);
                     transform.localRotation = Quaternion.Euler(0, 0, 0);

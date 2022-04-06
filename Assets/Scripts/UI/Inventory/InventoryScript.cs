@@ -7,17 +7,21 @@ using UnityEngine.UI;
 public class InventoryScript : MonoBehaviour
 {
     public GameObject WeaponHolder;
-    private GameObject currentWeapon = null;
+    public GameObject currentWeapon = null;
     public GameObject[] itemLocations;
     //selected last inventory item
     GameObject lastselect;
 
-    private void Awake()
+    private void Start()
     {
         //make item to hold last selected item
         lastselect = new GameObject();
         lastselect.name = "LastSelected";
-
+        bool firstweapon = true;
+        for (int i = 0; i < WeaponHolder.transform.childCount; i++)
+        {
+            WeaponHolder.transform.GetChild(i).gameObject.SetActive(false);
+        }
         for (int i = 0; i < Inventory.isFull.Length; i++)
         {
             if (Inventory.isFull[i] == true)
@@ -27,14 +31,13 @@ public class InventoryScript : MonoBehaviour
                 Inventory.slots[i].gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
                 itemLocations[i].gameObject.GetComponent<SpriteRenderer>().sprite = Inventory.spriteHolder[i].gameObject.GetComponent<SpriteRenderer>().sprite;
-                if (i == 0)
+
+                if (firstweapon)
                 {
-                    Inventory.slots[i].gameObject.SetActive(true);
+                    WeaponHolder.transform.GetChild(0).gameObject.SetActive(true);
+                    currentWeapon = WeaponHolder.transform.GetChild(i).gameObject;
+                    firstweapon = false;
                 }
-            }
-            else
-            {
-                break;
             }
         }
     }
@@ -53,6 +56,17 @@ public class InventoryScript : MonoBehaviour
     }
     public void WeaponShift()
     {
+        WeaponHolder = GameObject.Find("WeaponHolder");
+        if (WeaponHolder.transform.childCount>=1)
+        {
+            for (int i = 0; i < WeaponHolder.transform.childCount; i++)
+            {
+                if (WeaponHolder.transform.GetChild(i).gameObject.activeSelf == true)
+                {
+                    currentWeapon = WeaponHolder.transform.GetChild(i).gameObject;
+                }
+            }
+        }
         GameObject SelectedItem = EventSystem.current.currentSelectedGameObject;
         if (SelectedItem != null)
         {
@@ -67,12 +81,15 @@ public class InventoryScript : MonoBehaviour
             }
             if (currentWeapon != Inventory.slots[select] && Inventory.slots[select] != SelectedItem)
             {
-                if (currentWeapon != null)
+                if (Inventory.slots[select] != null)
                 {
-                    currentWeapon.SetActive(false);
+                    if (currentWeapon != null)
+                    {
+                        currentWeapon.SetActive(false);
+                    }
+                    Inventory.slots[select].gameObject.SetActive(true);
+                    currentWeapon = Inventory.slots[select];
                 }
-                Inventory.slots[select].SetActive(true);
-                currentWeapon = Inventory.slots[select];
             }
         }
     }

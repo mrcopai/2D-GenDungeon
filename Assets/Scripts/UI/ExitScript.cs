@@ -16,17 +16,19 @@ public class ExitScript : MonoBehaviour
     private void Awake()
     {
         weaponholder = GameObject.FindGameObjectWithTag("WeaponHolder");
-        ToolTip = GetComponent<TooltipScript>();
     }
     // Start is called before the first frame update
     private void OnTriggerStay2D(Collider2D collision)
     {
+        StartCoroutine(GetComponent<TooltipScript>().GetTooltip());
         if (collision.gameObject == GameObject.Find("Player"))
         {
+            ToolTip = GetComponent<TooltipScript>();
             MoveNextScene = new GameObject[weaponholder.transform.childCount];
             ToolTip.tooltipText.text = "Press Space to Exit";
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                collision.gameObject.transform.position = new Vector3(0,0,0);
                 for (int i = 0; i < weaponholder.transform.childCount; i++)
                 {
                     GameObject thing = weaponholder.transform.GetChild(i).gameObject;
@@ -72,5 +74,6 @@ public class ExitScript : MonoBehaviour
 
         // Unload the previous Scene
         SceneManager.UnloadSceneAsync(currentScene);
+            StartCoroutine(GetComponent<TooltipScript>().GetTooltip());
     }
 }
