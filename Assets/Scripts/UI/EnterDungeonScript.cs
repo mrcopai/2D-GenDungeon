@@ -9,8 +9,11 @@ public class EnterDungeonScript : MonoBehaviour
     public GameObject[] MoveNextScene;   
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(LoadYourAsyncScene());
-        collision.gameObject.transform.position = new Vector3(0,0,0);
+        if (collision.gameObject == GameObject.Find("Player"))
+        {
+            StartCoroutine(LoadYourAsyncScene());
+            collision.gameObject.transform.position = new Vector3(0, 0, 0);
+        }
     }
     IEnumerator LoadYourAsyncScene()
     {

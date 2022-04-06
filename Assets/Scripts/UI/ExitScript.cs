@@ -37,10 +37,10 @@ public class ExitScript : MonoBehaviour
                 }
                 StartCoroutine(LoadYourAsyncScene());
             }
-        }
-        else
-        {
-            ToolTip.tooltipText.text = "";
+            else
+            {
+                ToolTip.tooltipText.text = "";
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

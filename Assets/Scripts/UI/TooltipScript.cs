@@ -17,12 +17,18 @@ public class TooltipScript : MonoBehaviour
             if (gw.PickedUp == false)
             {
                 StartCoroutine(GetTooltip());
-                tooltipGameObject.transform.position = Input.mousePosition;
-                tooltipText.text =
-                      " Damage = " + gw.Damage +
-                    "\n Critrate = " + gw.CritRate +
-                    "\n Recharge speed = " + gw.Recharge +
-                    "\n Rarity = " + gw.rarety;
+                try
+                {
+                    tooltipGameObject.transform.position = Input.mousePosition;
+                    tooltipText.text =
+                          " Damage = " + gw.Damage +
+                        "\n Critrate = " + gw.CritRate +
+                        "\n Recharge speed = " + gw.Recharge +
+                        "\n Rarity = " + gw.rarety;
+                }
+                catch (System.Exception)
+                {
+                }
             }
         }
         
@@ -39,8 +45,11 @@ public class TooltipScript : MonoBehaviour
             tooltipGameObject = GameObject.FindGameObjectWithTag("Tooltip");
             tooltipText = tooltipGameObject.GetComponent<Text>();
             tooltipText.text = "";
+        } 
+        while (tooltipText == null)
+        {
+            yield return null;
         }
-        yield return null;
     }
 
 

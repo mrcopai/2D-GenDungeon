@@ -85,7 +85,7 @@ public class SelectScript : MonoBehaviour, ISelectHandler, IPointerEnterHandler,
         GroundWeaponScript CurWeapon = Inventory.slots[select].gameObject.GetComponent<GroundWeaponScript>();
         CurWeapon.transform.SetParent(null);
         CurWeapon.gameObject.SetActive(true);
-        CurWeapon.transform.localPosition = new Vector3(inventory.gameObject.transform.position.x - 2, inventory.gameObject.transform.position.y);
+        CurWeapon.transform.localPosition = new Vector3(inventory.gameObject.transform.position.x - 2, inventory.gameObject.transform.position.y,-1);
         CurWeapon.PickedUp = false;
         Inventory.slots[select] = GameObject.Find("Slot ("+select+")");
         Inventory.spriteHolder[select] = GameObject.Find("ItemLocation("+select+")");

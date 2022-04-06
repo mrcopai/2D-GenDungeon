@@ -145,7 +145,16 @@ public class GroundWeaponScript : MonoBehaviour
     private void Start()
     {
         WeaponHolder = GameObject.FindGameObjectWithTag("WeaponHolder");
-        
+
+        GenWeapon();
+        //name = random name;
+        Recharged = Recharge;
+        //NamedWeapons();
+
+    }
+    public void GenWeapon()
+    {
+
         Damage = GenDamage();
         CritRate = GenCritRate();
         Recharge = GenRecharge();
@@ -154,10 +163,7 @@ public class GroundWeaponScript : MonoBehaviour
             wg.GetComponent<WeaponGenerator>().WeaponSprites
             [Random.Range(0, wg.GetComponent<WeaponGenerator>().WeaponSprites.Length)];
         Icon = gameObject.GetComponent<SpriteRenderer>().sprite;
-        //name = random name;
-        Recharged = Recharge;
-        //NamedWeapons();
-
+        PickedUp = false;
     }
     private void Update()
     {
@@ -200,7 +206,6 @@ public class GroundWeaponScript : MonoBehaviour
                     transform.localRotation = Quaternion.Euler(0, 0, 0);
                     gameObject.SetActive(false);
                     Inventory.isFull[i] = true;
-                    GetComponent<TooltipScript>().tooltipText.text = "";
 
                     break;
                 }
@@ -229,6 +234,10 @@ public class GroundWeaponScript : MonoBehaviour
                     enemy.GetComponent<EnemyScript>().health -= totalDamage;
                     if (enemy.GetComponent<EnemyScript>().health <= 0)
                     {
+                        if (Random.Range(0,100) == 1)
+                        {
+                            Instantiate(gameObject, enemy.gameObject.transform.position, Quaternion.identity);
+                        }
                         Destroy(enemy.gameObject);
                     }
                 }

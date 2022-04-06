@@ -497,6 +497,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe36e706f9ad1564fbdccee1c1d69a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveNextScene: []
+  weaponholder: {fileID: 0}
   ExitMap: {fileID: 1120527540}
   ToolTip: {fileID: 0}
 --- !u!114 &1120527543
@@ -559,7 +561,7 @@ MonoBehaviour:
   area:
     m_Position: {x: -15, y: -15, z: 0}
     m_Size: {x: 30, y: 30, z: 1}
-  Enemy1: {fileID: 3268916826804657435, guid: 2e54883a85b19a74b8666f07ba42be5a, type: 3}
+  Enemy: {fileID: 3268916826804657435, guid: 2e54883a85b19a74b8666f07ba42be5a, type: 3}
   availablePlaces: []
 --- !u!1 &1552535086
 GameObject:

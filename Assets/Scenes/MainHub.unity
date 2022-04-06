@@ -6310,6 +6310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponHolder: {fileID: 1124281291}
+  currentWeapon: {fileID: 0}
   itemLocations:
   - {fileID: 1547737187}
   - {fileID: 1457693883}

@@ -12,4 +12,5 @@ public class WeaponGenerator : MonoBehaviour
     {
         Instantiate(WeaponPrefab, transform.position = new Vector3(3,0,-1), Quaternion.identity);
     }
+
 }

@@ -10,12 +10,11 @@ public class EnemyManeger : MonoBehaviour
     [SerializeField]
     BoundsInt area = new BoundsInt(new Vector3Int(-15, -15, 0), new Vector3Int(30, 30, 1));
 
-    public GameObject Enemy1;
+    public GameObject Enemy;
     public List<Vector3> availablePlaces;
 
     private void Start()
     {
-        //Position von jedem Floortile ermitteln:
         availablePlaces = new List<Vector3>();
 
         for (int n = Ground.cellBounds.xMin; n < Ground.cellBounds.xMax; n++)
@@ -34,14 +33,25 @@ public class EnemyManeger : MonoBehaviour
         foreach (Vector3Int item in area.allPositionsWithin)
         {
             availablePlaces.Remove(item);
-            Ground.SetColor(item, Color.black);
         }
 
-
-
-        for (int i = 0; i < 70; i++)
+        int podsnumber = availablePlaces.Count / 150;
+        BoundsInt[] Pods = new BoundsInt[podsnumber];
+        for (int i = 0; i < Pods.Length; i++)
         {
-            //Instantiate(Enemy1, (availablePlaces[Random.Range(0, availablePlaces.Count)] + new Vector3(0, 0, -1)), Quaternion.identity);
+            Vector3Int pos = Vector3Int.FloorToInt(availablePlaces[Random.Range(0, availablePlaces.Count)]);
+            Pods[i] = new BoundsInt(pos, new Vector3Int(10,10,-1));
+            List<Vector3> PODPlaces = new List<Vector3>();
+            foreach (Vector3Int item in Pods[i].allPositionsWithin)
+            {
+                PODPlaces.Add(item);
+            }
+            int podSize = Random.Range(2,8);
+            for (int j = 0; j < podSize; j++)
+            {
+                Instantiate(Enemy, (PODPlaces[Random.Range(0, PODPlaces.Count)] + new Vector3(0, 0, -1)), Quaternion.identity,gameObject.transform);
+
+            }
         }
     }
 }
