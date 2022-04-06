@@ -45,7 +45,10 @@ public class ExitScript : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        ToolTip.tooltipText.text = "";
+        if (collision.gameObject == GameObject.Find("Player"))
+        {
+            ToolTip.tooltipText.text = "";
+        }
     }
     IEnumerator LoadYourAsyncScene()
     {      

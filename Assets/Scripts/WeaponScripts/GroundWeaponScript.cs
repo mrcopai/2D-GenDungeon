@@ -215,10 +215,10 @@ public class GroundWeaponScript : MonoBehaviour
         {
             if (Recharge <= Recharged)
             {
-                Recharged = 0;
                 Rigidbody2D enemy = other.GetComponent<Rigidbody2D>();
                 if (enemy!=null)
                 {
+                    Recharged = 0;
                     enemy.GetComponentInChildren<EnemyAIScript>().canMove = false;
                     enemy.isKinematic = false;
                     Vector2 diffrence = enemy.transform.position - transform.position;

@@ -40,11 +40,14 @@ public class EnemyManeger : MonoBehaviour
         for (int i = 0; i < Pods.Length; i++)
         {
             Vector3Int pos = Vector3Int.FloorToInt(availablePlaces[Random.Range(0, availablePlaces.Count)]);
-            Pods[i] = new BoundsInt(pos, new Vector3Int(10,10,-1));
+            Pods[i] = new BoundsInt(pos + new Vector3Int(-5,-5,0), new Vector3Int(10,10,1));
             List<Vector3> PODPlaces = new List<Vector3>();
             foreach (Vector3Int item in Pods[i].allPositionsWithin)
             {
-                PODPlaces.Add(item);
+                if (Ground.HasTile(item))
+                {
+                    PODPlaces.Add(item);
+                }
             }
             int podSize = Random.Range(2,8);
             for (int j = 0; j < podSize; j++)
