@@ -15,6 +15,7 @@ public class EnemyAIScript : MonoBehaviour
     [SerializeField]
     public float speed;
     public bool canMove = true;
+    public Animator anim;
 
     private void Awake()
     {
@@ -39,6 +40,9 @@ public class EnemyAIScript : MonoBehaviour
             catch (System.Exception)
             {
             }
+            anim = GetComponentInParent<Animator>();
+
+            anim.SetFloat("SeesPlayer", 1);
         }
     }
     private void Update()
@@ -49,5 +53,11 @@ public class EnemyAIScript : MonoBehaviour
         {
             body.transform.position += (lastloc - body.transform.position).normalized * speed * Time.deltaTime;
         }
+        else
+        {
+            anim = GetComponentInParent<Animator>();
+            anim.SetFloat("SeesPlayer", 0);
+        }
+
     }
 }
