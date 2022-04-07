@@ -229,7 +229,7 @@ public class GroundWeaponScript : MonoBehaviour
                     diffrence = diffrence.normalized * 4;
                     enemy.AddForce(diffrence, ForceMode2D.Impulse);
                     StartCoroutine(KnockBackCo(enemy));
-
+                    enemy.transform.position = new Vector3(enemy.transform.position.x, enemy.transform.position.y,-1);
                     int totalDamage = Damage;
                     if (Random.Range(0,100) < CritRate)
                     {

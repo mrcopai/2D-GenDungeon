@@ -24,6 +24,8 @@ public class EnemyScript : MonoBehaviour
     private void Update()
     {
         GetComponent<SpriteRenderer>().flipX = Target.transform.position.x < transform.position.x;
-
+        Vector3 pos = transform.position;
+        pos.z = -1;
+        transform.position = pos;
     }
 }
