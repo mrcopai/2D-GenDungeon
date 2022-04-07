@@ -6,7 +6,7 @@ public class EnemyScript : MonoBehaviour
 {
     private GameObject Target;
     public float health;
-
+    public float damage;
     private void Awake()
     {
         Target = GameObject.Find("Player");
@@ -15,7 +15,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (collision.gameObject == Target)
         {
-            //deal Damage
+            Target.gameObject.GetComponent<PlayerScript>().Health -= damage;
         }
     }
 

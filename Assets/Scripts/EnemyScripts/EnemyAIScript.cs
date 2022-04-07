@@ -48,7 +48,7 @@ public class EnemyAIScript : MonoBehaviour
     private void Update()
     {
         if (lastloc != new Vector3(0,0,0) && 
-            Vector2.Distance(body.transform.position,lastloc) > 1 &&
+            Vector2.Distance(body.transform.position,lastloc) > 0.3 &&
             canMove == true)
         {
             body.transform.position += (lastloc - body.transform.position).normalized * speed * Time.deltaTime;

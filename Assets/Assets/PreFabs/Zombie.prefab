@@ -52,6 +52,7 @@ MonoBehaviour:
   lastloc: {x: 0, y: 0, z: 0}
   speed: 5
   canMove: 1
+  anim: {fileID: 0}
 --- !u!58 &3268916826141546396
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -216,6 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  damage: 10
   facingRight: 1
 --- !u!95 &1384484957304019748
 Animator:

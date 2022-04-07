@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
     public float speed;
+    public float Health;
     public Animator animator;
 
     private void Start()
@@ -28,7 +29,27 @@ public class PlayerScript : MonoBehaviour
             Flip();
         else if (horizontalInput < 0 && facingRight)
             Flip();
+        if (Health <=0)
+        {
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+            Health = 100;
+            Inventory.isFull = new bool[3]
+            { false, false, false };
+            Inventory.slots = new GameObject[3]
+            {
+                GameObject.Find("Slot (0)"),
+                GameObject.Find("Slot (1)"),
+                GameObject.Find("Slot (2)")
+            };
+            Inventory.spriteHolder = new GameObject[3]
+            {
+                GameObject.Find("ItemLocation(0)"),
+                GameObject.Find("ItemLocation(1)"),
+                GameObject.Find("ItemLocation(2)")
+            };
+            SceneManager.LoadScene(("MainHub"), LoadSceneMode.Single);
 
+        }
     }
     private void Movement(float horizontalInput,float verticalInput)
     {
@@ -49,5 +70,4 @@ public class PlayerScript : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-
 }

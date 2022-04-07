@@ -147,7 +147,6 @@ public class GroundWeaponScript : MonoBehaviour
         WeaponHolder = GameObject.FindGameObjectWithTag("WeaponHolder");
 
         GenWeapon();
-        //name = random name;
         Recharged = Recharge;
         //NamedWeapons();
 
@@ -164,6 +163,7 @@ public class GroundWeaponScript : MonoBehaviour
             [Random.Range(0, wg.GetComponent<WeaponGenerator>().WeaponSprites.Length)];
         Icon = gameObject.GetComponent<SpriteRenderer>().sprite;
         PickedUp = false;
+        //name = random name;
     }
     private void Update()
     {
@@ -199,6 +199,10 @@ public class GroundWeaponScript : MonoBehaviour
                     PickedUp = true;
                     Inventory.slots[i] = gameObject;
                     Icon = gameObject.GetComponent<SpriteRenderer>().sprite;
+                    if (Inventory.spriteHolder[i] == null)
+                    {
+                        Inventory.spriteHolder[i] = GameObject.Find("ItemLocation(" + i + ")");
+                    }
                     Inventory.spriteHolder[i].GetComponent<SpriteRenderer>().sprite = Icon;
                     WeaponHolder = GameObject.FindGameObjectWithTag("WeaponHolder");
                     gameObject.transform.SetParent(WeaponHolder.transform);
