@@ -104,6 +104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PickedUp: 0
+  WeaponNamesText: {fileID: 4900000, guid: 564d57d6aa15a5c4485669d1f87967dc, type: 3}
+  WeaponNames: []
   Name: 
   Damage: 0
   CritRate: 0

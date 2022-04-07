@@ -9,6 +9,10 @@ public class GroundWeaponScript : MonoBehaviour
     public bool PickedUp = false;
     private GameObject wg;
     [SerializeField]
+    private TextAsset WeaponNamesText;
+    [SerializeField]
+    private string[] WeaponNames;
+    [SerializeField]
     public string Name;
 
     [SerializeField]
@@ -163,8 +167,16 @@ public class GroundWeaponScript : MonoBehaviour
             [Random.Range(0, wg.GetComponent<WeaponGenerator>().WeaponSprites.Length)];
         Icon = gameObject.GetComponent<SpriteRenderer>().sprite;
         PickedUp = false;
-        //name = random name;
+        name = GenName();
     }
+    private string GenName()
+    {
+        string name = null;
+        WeaponNames = WeaponNamesText.text.Split(new string[] {",", "\n"}, System.StringSplitOptions.None);
+        name = WeaponNames[Random.Range(0,WeaponNames.Length)];
+        return name;
+    }
+
     private void Update()
     {
         if (Recharged <= Recharge)
