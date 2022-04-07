@@ -11,8 +11,19 @@ public class EnterDungeonScript : MonoBehaviour
     {
         if (collision.gameObject == GameObject.Find("Player"))
         {
-            StartCoroutine(LoadYourAsyncScene());
-            collision.gameObject.transform.position = new Vector3(0, 0, 0);
+            bool hasweapon = false;
+            for (int i = 0; i < Inventory.isFull.Length; i++)
+            {
+                if (Inventory.isFull[i] == true)
+                {
+                    hasweapon = true;
+                }
+            }
+            if (hasweapon == true)
+            {
+                StartCoroutine(LoadYourAsyncScene());
+                collision.gameObject.transform.position = new Vector3(0, 0, 0);
+            }
         }
     }
     IEnumerator LoadYourAsyncScene()
