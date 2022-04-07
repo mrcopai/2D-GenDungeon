@@ -24,7 +24,7 @@ public class GroundWeaponScript : MonoBehaviour
     public Sprite Icon;
 
     [SerializeField]
-    private float Recharged;
+    public float Recharged;
     public float knockbacktime = 0.4f;
 
     private int GenDamage()
