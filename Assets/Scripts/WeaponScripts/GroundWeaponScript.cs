@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class GroundWeaponScript : MonoBehaviour
@@ -168,6 +167,8 @@ public class GroundWeaponScript : MonoBehaviour
         Icon = gameObject.GetComponent<SpriteRenderer>().sprite;
         PickedUp = false;
         name = GenName();
+        gameObject.AddComponent<CapsuleCollider2D>();
+        gameObject.GetComponent<CapsuleCollider2D>().isTrigger = true;
     }
     private string GenName()
     {

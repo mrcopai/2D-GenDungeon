@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4193968537518257194}
   - component: {fileID: 2158636081113658598}
   - component: {fileID: 31976876974139360}
-  - component: {fileID: 6143297524949495367}
   - component: {fileID: 209345958099483023}
   m_Layer: 6
   m_Name: WeaponPrefab
@@ -114,22 +113,6 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Recharged: 0
   knockbacktime: 0.4
---- !u!70 &6143297524949495367
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6071705588163875687}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.3937502}
-  m_Size: {x: 0.625, y: 1.3125}
-  m_Direction: 0
 --- !u!114 &209345958099483023
 MonoBehaviour:
   m_ObjectHideFlags: 0
