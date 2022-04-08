@@ -36,8 +36,8 @@ public class TooltipScript : MonoBehaviour
     }
     private void OnMouseExit()
     {
-        StartCoroutine(GetTooltip());
-        tooltipText.text = "";
+        tooltipGameObject = GameObject.Find("Tooltip");
+        tooltipGameObject.GetComponent<Text>().text = "";
     }
     public IEnumerator GetTooltip()
     {
@@ -46,11 +46,8 @@ public class TooltipScript : MonoBehaviour
             tooltipGameObject = GameObject.FindGameObjectWithTag("Tooltip");
             tooltipText = tooltipGameObject.GetComponent<Text>();
             tooltipText.text = "";
-        } 
-        while (tooltipText == null)
-        {
-            yield return null;
         }
+        yield return null;
     }
 
 

@@ -209,8 +209,8 @@ public class GroundWeaponScript : MonoBehaviour
             {
                 if (Inventory.isFull[i] == false)
                 {
-                    GameObject.Find("Tooltip").SetActive(false);
-                       PickedUp = true;
+                    GameObject.Find("Tooltip").GetComponent<Text>().text = "";
+                    PickedUp = true;
                     Inventory.slots[i] = gameObject;
                     Icon = gameObject.GetComponent<SpriteRenderer>().sprite;
                     if (Inventory.spriteHolder[i] == null)
