@@ -56,10 +56,8 @@ public class EnemyManeger : MonoBehaviour
             }
             int podSize = Random.Range(2,8);
             CreatePod(podSize, PODPlaces);
-            
         }
         NumberOfChests = Random.Range(-1, 3);
-        Debug.Log(NumberOfChests);
         for (int i = 0; i < NumberOfChests; i++)
         {
             Instantiate(chest, availablePlaces[Random.Range(0, availablePlaces.Count)] + new Vector3(0, 0, -1), Quaternion.identity, gameObject.transform);

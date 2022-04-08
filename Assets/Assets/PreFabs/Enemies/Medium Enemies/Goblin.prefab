@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!61 &5754661909948004887
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491526234786469349}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.75, y: 1}
+    newSize: {x: 0.5625, y: 0.625}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &8595979979113531646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11,6 +37,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 07aea0ec631aab24bacf2387c6b360fa, type: 2}
+    - target: {fileID: 3268916826141546397, guid: 2e54883a85b19a74b8666f07ba42be5a, type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3268916826804657435, guid: 2e54883a85b19a74b8666f07ba42be5a, type: 3}
       propertyPath: m_Name
       value: Goblin
@@ -64,6 +94,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8749302817991680212, guid: 3ebdea35129ebe340adb89d00c861a0a, type: 3}
     - target: {fileID: 3268916826804657439, guid: 2e54883a85b19a74b8666f07ba42be5a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268916826804657439, guid: 2e54883a85b19a74b8666f07ba42be5a, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.75
       objectReference: {fileID: 0}
@@ -79,5 +113,11 @@ PrefabInstance:
       propertyPath: health
       value: 150
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3268916826804657439, guid: 2e54883a85b19a74b8666f07ba42be5a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2e54883a85b19a74b8666f07ba42be5a, type: 3}
+--- !u!1 &6491526234786469349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3268916826804657435, guid: 2e54883a85b19a74b8666f07ba42be5a, type: 3}
+  m_PrefabInstance: {fileID: 8595979979113531646}
+  m_PrefabAsset: {fileID: 0}
