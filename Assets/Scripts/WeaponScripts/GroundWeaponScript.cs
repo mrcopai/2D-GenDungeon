@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GroundWeaponScript : MonoBehaviour
 {
@@ -208,8 +209,8 @@ public class GroundWeaponScript : MonoBehaviour
             {
                 if (Inventory.isFull[i] == false)
                 {
-                    StartCoroutine(GetComponent<TooltipScript>().GetTooltip());
-                    PickedUp = true;
+                    GameObject.Find("Tooltip").SetActive(false);
+                       PickedUp = true;
                     Inventory.slots[i] = gameObject;
                     Icon = gameObject.GetComponent<SpriteRenderer>().sprite;
                     if (Inventory.spriteHolder[i] == null)
@@ -223,7 +224,6 @@ public class GroundWeaponScript : MonoBehaviour
                     transform.localRotation = Quaternion.Euler(0, 0, 0);
                     gameObject.SetActive(false);
                     Inventory.isFull[i] = true;
-
                     break;
                 }
             }

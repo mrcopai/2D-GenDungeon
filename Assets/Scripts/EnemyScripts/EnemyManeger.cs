@@ -62,7 +62,6 @@ public class EnemyManeger : MonoBehaviour
         Debug.Log(NumberOfChests);
         for (int i = 0; i < NumberOfChests; i++)
         {
-            Debug.Log("here");
             Instantiate(chest, availablePlaces[Random.Range(0, availablePlaces.Count)] + new Vector3(0, 0, -1), Quaternion.identity, gameObject.transform);
         }
     }

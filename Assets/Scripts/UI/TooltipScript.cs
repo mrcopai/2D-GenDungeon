@@ -28,6 +28,7 @@ public class TooltipScript : MonoBehaviour
                 }
                 catch (System.Exception)
                 {
+                    tooltipText.text = "";
                 }
             }
         }
