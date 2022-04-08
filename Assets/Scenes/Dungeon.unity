@@ -562,7 +562,12 @@ MonoBehaviour:
   area:
     m_Position: {x: -15, y: -15, z: 0}
     m_Size: {x: 30, y: 30, z: 1}
-  Enemy: {fileID: 3268916826804657435, guid: 2e54883a85b19a74b8666f07ba42be5a, type: 3}
+  SmallEnemy:
+  - {fileID: 3268916826804657435, guid: 2e54883a85b19a74b8666f07ba42be5a, type: 3}
+  MediumEnemy:
+  - {fileID: 6491526234786469349, guid: 8b465d699264cc246917748a843387ae, type: 3}
+  LargeEnemy:
+  - {fileID: 4189714963725742253, guid: 4adefbdb90a8e1f4aaab2e87e18247e7, type: 3}
   availablePlaces: []
 --- !u!1 &1552535086
 GameObject:

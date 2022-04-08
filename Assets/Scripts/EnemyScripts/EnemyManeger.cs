@@ -12,7 +12,9 @@ public class EnemyManeger : MonoBehaviour
     [SerializeField]
     BoundsInt area = new BoundsInt(new Vector3Int(-15, -15, 0), new Vector3Int(30, 30, 1));
 
-    public GameObject Enemy;
+    public GameObject[] SmallEnemy;
+    public GameObject[] MediumEnemy;
+    public GameObject[] LargeEnemy;
     public List<Vector3> availablePlaces;
     private int NumberOfChests;
 
@@ -53,16 +55,36 @@ public class EnemyManeger : MonoBehaviour
                 }
             }
             int podSize = Random.Range(2,8);
-            for (int j = 0; j < podSize; j++)
-            {
-                Instantiate(Enemy, PODPlaces[Random.Range(0, PODPlaces.Count)] + new Vector3(0, 0, -1), Quaternion.identity,gameObject.transform);
-            }
+            CreatePod(podSize, PODPlaces);
+            
         }
         NumberOfChests = Random.Range(-1, 3);
         Debug.Log(NumberOfChests);
         for (int i = 0; i < NumberOfChests; i++)
         {
             Instantiate(chest, availablePlaces[Random.Range(0, availablePlaces.Count)] + new Vector3(0, 0, -1), Quaternion.identity, gameObject.transform);
+        }
+    }
+    private void CreatePod(int PodSize, List<Vector3> PODPlaces)
+    {
+        for (int i = 0; i < PodSize; i++)
+        {
+            int EnemyType = Random.Range(0,100);
+            if (EnemyType <50)
+            {
+                //create Small Enemy
+                Instantiate(SmallEnemy[Random.Range(0,SmallEnemy.Length)], PODPlaces[Random.Range(0, PODPlaces.Count)] + new Vector3(0, 0, -1), Quaternion.identity, gameObject.transform);
+            }
+            else if (EnemyType < 85)
+            {
+                //create Medium Enemy
+                Instantiate(MediumEnemy[Random.Range(0, MediumEnemy.Length)], PODPlaces[Random.Range(0, PODPlaces.Count)] + new Vector3(0, 0, -1), Quaternion.identity, gameObject.transform);
+            }
+            else
+            {
+                //create Large Enemy
+                Instantiate(LargeEnemy[Random.Range(0, LargeEnemy.Length)], PODPlaces[Random.Range(0, PODPlaces.Count)] + new Vector3(0, 0, -1), Quaternion.identity, gameObject.transform);
+            }
         }
     }
 }
